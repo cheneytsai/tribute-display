@@ -4,18 +4,23 @@ console.log('page loading');
 var scheme   = "<%= @scheme %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
+
+
 ws.onmessage = function(message) {
   var data = JSON.parse(message.data);
 
 
-  if ($("#output-text").children().length > 10) {
-    $("#output-text").children().first().remove();
-  };
+  $("#served-count").html(data.handle);
+  $("#raised-count").html('$' + data.handle);
+  $("#pumped-count").html(data.handle + '.' + data.text)
 
 
-  $("#output-text").append("<div class='panel panel-default'><div class='panel-heading'>" + data.handle + "</div><div class='panel-body'>" + data.text + "</div></div>");
+  //$("#output-text").append("<div class=''><h2>" + data.handle + "</h4></div><div class=''><h5>" + data.text + "</h5></div>");
+ 
+ /* 
   $("#output-text").stop().animate({
     scrollTop: $('#output-text')[0].scrollHeight
   }, 800);
+*/
 };
 

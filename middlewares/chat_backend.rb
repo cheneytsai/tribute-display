@@ -26,7 +26,7 @@ module ChatDemo
             #TODO: Grab Flow Sensor Reading Here
             lastline = `tail -1 SENSOR_DATA.txt`
 
-            @clients.each {|ws| ws.send('{"handle":"Update #' + update_count.to_s + '   ","text":"Rate = ' + lastline.to_s + ' "}') }
+            @clients.each {|ws| ws.send('{"handle":"' + update_count.to_s + '","text":"' + lastline.to_s + '"}') }
             update_count+=1
             sleep 0.1
         end

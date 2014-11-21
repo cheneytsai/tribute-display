@@ -1,4 +1,30 @@
+body {
+
+	background: -webkit-linear-gradient(#2cddbf, #e85b26);
+	font-size: 3em;
+	height: 100vh;
+	padding: 40px;
+}
+
+h2 {
+	font-size: 5em;
+}
+
+.stat {
+	margin: 25px 0px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
 #output-text {
-  overflow: auto;
-  height: 500px;
+  overflow: scroll;
+  height: 100%;
+  border: 1px solid #FFF;
+
+ 	text-transform: uppercase;
+ 	color: #FFF;
+ 	text-align: center;
+
 }
