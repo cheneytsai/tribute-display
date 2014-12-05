@@ -1,26 +1,24 @@
-console.log('page loading');
-
-
 var scheme   = "<%= @scheme %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
+var sum 		 = 0;
 
 
 ws.onmessage = function(message) {
+	console.log("received message!");
+	console.log(message);
   var data = JSON.parse(message.data);
-
-
-  $("#served-count").html(data.handle);
-  $("#raised-count").html('$' + data.handle);
-  $("#pumped-count").html(data.handle + '.' + data.text)
-
-
-  //$("#output-text").append("<div class=''><h2>" + data.handle + "</h4></div><div class=''><h5>" + data.text + "</h5></div>");
- 
- /* 
-  $("#output-text").stop().animate({
-    scrollTop: $('#output-text')[0].scrollHeight
-  }, 800);
-*/
+  console.log(data);
+  sum += Math.floor(data.liters_pumped);
+  $("#served-count").html(data.people_served);
+  //$("#raised-count").html('$' + data.dollars_raised);
+  $("#pumped-count").html(data.liters_pumped);
+  //$("#pumped-count").html(sum);
 };
 
+$("#input-form").on("submit", function(event) {
+  event.preventDefault();
+  var liters = $("#input-liters")[0].value;
+  ws.send(JSON.stringify({ liters_pumped: liters }));
+  $("#input-liters")[0].value = "";
+});

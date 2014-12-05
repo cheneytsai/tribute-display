@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     eventmachine (1.0.3)
     faye-websocket (0.8.0)

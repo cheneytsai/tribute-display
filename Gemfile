@@ -1,6 +1,6 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
-ruby "2.1.2"
+ruby "2.1.5"
 
 gem "faye-websocket"
 gem "sinatra"

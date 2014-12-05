@@ -9,26 +9,44 @@ module ChatDemo
     KEEPALIVE_TIME = 15 # in seconds
     CHANNEL        = "chat-demo"
 
-    
-
     def initialize(app)
       @app     = app
       @clients = []
       uri = URI.parse(ENV["REDISCLOUD_URL"])
       @redis = Redis.new(host: uri.host, port: uri.port, password: uri.password)
       Thread.new do
-        update_count = 1
-        p 'start listening thread'
+        sum = 0
+        pad5_value = 8
+        cost_per_person = 30 # the amount of money it takes to serve one person
+
+        # FINALIZE THE FOLLOWING BY MONDAY
+        people_served_by_one_liter = 20 # this is the number of people served by 1 liter
+        max_people_to_serve = 33000 # the amount of people that can be served before putting up the "we did it!" screen
         while true do
-            #p 'send update with 100ms pause'
-            
+          # STREAM FROM FILE 2 (millileters)
+          files = Dir.entries("public")
+          stream = "" # file to stream from
+          files.each do |f|
+            stream = f unless f.match(/outpour_ML.*/).nil?
+          end
+          p "trying to read from #{stream}"
 
-            #TODO: Grab Flow Sensor Reading Here
-            lastline = `tail -1 SENSOR_DATA.txt`
+          # TRANSFORM DATA: people_served, dollars_raised, liters_pumped
+          lastline = `tail -1 public/#{stream}`
+          p "lastline: #{lastline.strip}"
+          sum = (sum + lastline.strip.to_i + pad5_value) if lastline.strip.to_i > 0
+          p "sum: #{sum}"
 
-            @clients.each {|ws| ws.send('{"handle":"' + update_count.to_s + '","text":"' + lastline.to_s + '"}') }
-            update_count+=1
-            sleep 0.1
+          liters_pumped = sum / 1000 # convert milliliters to liters
+          people_served = liters_pumped * people_served_by_one_liter
+          dollars_raised = people_served * cost_per_person
+          max_people_served = (people_served >= max_people_to_serve) ? true : false
+
+          # SEND DATA TO THE CLIENT
+          message = "{\"liters_pumped\":\"#{liters_pumped.to_s}\"\, \"dollars_raised\":\"#{dollars_raised.to_s}\"\, \"max_people_served\":\"#{max_people_served.to_s}\"\, \"people_served\":\"#{people_served.to_s}\"}"
+          p "message: #{message}"
+          @clients.each {|ws| ws.send(message) }
+          sleep 1
         end
       end
     end
