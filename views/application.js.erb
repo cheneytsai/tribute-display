@@ -1,24 +1,109 @@
+/****** Main Execution Thread ********/
+
 var scheme   = "<%= @scheme %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
-var sum 		 = 0;
+
+var bg_counter = 1;
+
+var STARTING_LITERS_PUMPED = window.document.location.href.split('?pumped=')[1] || 0;
+
+var MAX_NUMBER_PEOPLE = 1400;
+var PEOPLE_SERVED_BY_ONE_LITER = 20;
+
+var bgAnimateID = setInterval(animateBG, 12000);
+
+$(document).ready(function() {
+
+  od1 = new Odometer({
+    el: document.querySelector('#served-count'),
+    duration: 5000,
+  });
+
+  od2 = new Odometer({
+    el: document.querySelector('#pumped-count'),
+    duration: 5000,
+  });
+
+  
+
+  $('#max-people-served').html(numberWithCommas(MAX_NUMBER_PEOPLE));
+
+});
 
 
+
+/******** End Main Thread *********/
+
+// Callback for WebSocket Response
 ws.onmessage = function(message) {
-	console.log("received message!");
-	console.log(message);
   var data = JSON.parse(message.data);
-  console.log(data);
-  sum += Math.floor(data.liters_pumped);
-  $("#served-count").html(data.people_served);
-  //$("#raised-count").html('$' + data.dollars_raised);
-  $("#pumped-count").html(data.liters_pumped);
-  //$("#pumped-count").html(sum);
+  //console.log(data);
+    var people_served = parseInt((data.ml_pumped/1000 + parseFloat(STARTING_LITERS_PUMPED)) * PEOPLE_SERVED_BY_ONE_LITER);
+    var liters_pumped = (parseFloat(data.ml_pumped/1000) + parseFloat(STARTING_LITERS_PUMPED)).toFixed(1);
+
+    if (people_served >= MAX_NUMBER_PEOPLE ) {
+
+      od1.update(MAX_NUMBER_PEOPLE);
+      od2.update((MAX_NUMBER_PEOPLE/PEOPLE_SERVED_BY_ONE_LITER).toFixed(1));
+      animateFinalScreen();
+
+    } else {
+      window.requestAnimationFrame(updateCounter);
+    }
+
+    function updateCounter() {
+      od1.update(people_served);
+      od2.update(liters_pumped);
+    }
+
+    
 };
 
-$("#input-form").on("submit", function(event) {
-  event.preventDefault();
-  var liters = $("#input-liters")[0].value;
-  ws.send(JSON.stringify({ liters_pumped: liters }));
-  $("#input-liters")[0].value = "";
-});
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+// Function to Transition Background
+function animateBG() {
+    if (bg_counter == 0) {
+        $('.bg-gradient').removeClass('show');
+        $('.bg-gradient-1').addClass('show');
+    }
+    else if (bg_counter == 1) {
+        $('.bg-gradient').removeClass('show');
+        $('.bg-gradient-2').addClass('show');
+    }
+    else if (bg_counter == 2) {
+        $('.bg-gradient').removeClass('show');
+        $('.bg-gradient-3').addClass('show');
+    }
+    else {
+
+    }
+    bg_counter++;
+    bg_counter = bg_counter%3;
+
+}
+
+function animateFinalScreen() {
+    clearInterval(bgAnimateID);
+    bg_counter = -1;
+
+    $('.bg-gradient').removeClass('show');
+    $('.bg-gradient-4').addClass('show');
+
+    setTimeout(function(){
+
+      $('.stats').fadeOut(500, function() {
+        $('.final').fadeIn(500);
+      });
+    }, 3000);
+
+
+}
+
+
+
+

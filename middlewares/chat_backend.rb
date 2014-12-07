@@ -43,7 +43,7 @@ module ChatDemo
           max_people_served = (people_served >= max_people_to_serve) ? true : false
 
           # SEND DATA TO THE CLIENT
-          message = "{\"liters_pumped\":\"#{liters_pumped.to_s}\"\, \"dollars_raised\":\"#{dollars_raised.to_s}\"\, \"max_people_served\":\"#{max_people_served.to_s}\"\, \"people_served\":\"#{people_served.to_s}\"}"
+          message = "{\"ml_pumped\":\"#{sum.to_s}\"\, \"dollars_raised\":\"#{dollars_raised.to_s}\"\, \"max_people_served\":\"#{max_people_served.to_s}\"\, \"people_served\":\"#{people_served.to_s}\"}"
           p "message: #{message}"
           @clients.each {|ws| ws.send(message) }
           sleep 1

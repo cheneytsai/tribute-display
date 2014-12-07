@@ -1,30 +1,225 @@
-body {
-
-	background: -webkit-linear-gradient(#2cddbf, #e85b26);
-	font-size: 3em;
-	height: 100vh;
-	padding: 40px;
-}
-
-h2 {
-	font-size: 5em;
-}
-
-.stat {
-	margin: 25px 0px;
+@font-face {
+  font-family: 'NeueDroschke';
+  src: url('../fonts/NeueDroschke.ttf');
 }
 
 * {
 	box-sizing: border-box;
 }
 
-#output-text {
-  overflow: scroll;
-  height: 100%;
-  border: 1px solid #FFF;
+body {
+	font-family: 'NeueDroschke';
+	background-color: #FFF;
+	font-size: 2.5vw;
+	height: 100vh;
+	padding: 2.5vh 2vw;
+	letter-spacing: 0.3vw;
+	overflow: hidden;
+	
+}
 
- 	text-transform: uppercase;
- 	color: #FFF;
- 	text-align: center;
+.gradient-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top:0px;
+	left: 0px;
+	z-index: 1;
+	-webkit-transform: translateZ(0);
+}
+
+.bg-gradient {
+	opacity: 0;
+	transition: opacity 4s ease-in-out;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top:0px;
+	left: 0px;
+	-webkit-animation: pan 10s ease infinite;
+	z-index: 1;
+	-webkit-transform: translateZ(0);
+}
+
+@-webkit-keyframes pan {
+    0%{background-position:0% 50%}
+    50%{background-position:50% 0%}
+    100%{background-position:0% 50%}
+}
+
+
+.bg-gradient-1 {
+	background: -webkit-linear-gradient(#2D3463, #EA0B8C);
+	background-size: 150% 150%;
+}
+
+.bg-gradient-2 {
+	background: -webkit-linear-gradient(#EE3968, #F9AE1D);
+	background-size: 150% 150%;
+}
+
+.bg-gradient-3 {
+	background: -webkit-linear-gradient(#F5EB29, #68C39C);
+	background-size: 150% 150%;
+}
+
+.bg-gradient-4 {
+	background: -webkit-linear-gradient(#68C39C, #3AC6F4);
+	background-size: 150% 150%;
+}
+
+.gradient-bar {
+	background: -webkit-linear-gradient(right, #EB1D6B, #F9AE1D);
+	margin: 0 auto;
+	margin-bottom: 8vh;
+	height: 1vh;
+	width: 70vw;
+}
+
+.show {
+	transition: opacity 2s ease-in-out;
+	opacity: 1;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, span {
+	font-family: 'NeueDroschke';
+}
+
+h1 {
+	font-size: 6em;
+	margin: 0px;
+}
+
+h2 {
+	font-size: 5em;
+	margin: 0px;
+}
+
+h4 {
+	font-size: 1.8em;
+	max-width: 80vw;
+	margin: 0 auto;
+}
+
+.final {
+	display: none;
+	position: relative;
+  top: 50%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+
+.stats {
+  position: relative;
+  top: 50%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
+
+.stat {
+	padding: 25px 0px;
+}
+
+.odometer.odometer-auto-theme, .odometer.odometer-theme-default {
+  	-webkit-transform: translateZ(0)
+  	font-family: 'NeueDroschke';
+}
+
+.odometer-value {
+    width: 100%
+ }	
+
+
+#svg {
+	height: 3vw;
+	position: absolute;
+	bottom: -1.5vw;
+	width: 3vw;
+	margin-left: -1.5vw;
+}
+
+#bottom-border:before {
+	content: '';
+	height: 1vh;
+	width: calc(50% - 3vw);;
+	position: absolute;
+	bottom: 0px;
+	left:0px;
+	border-bottom: 1px solid #FFF;
+}
+
+#bottom-border:after {
+	content: '';
+	height: 1vh;
+	width: calc(50% - 3vw);;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	border-bottom: 1px solid #FFF;
+}
+
+#left-text {
+	position:absolute;
+	left: -3.5vw;
+	top: calc(50% - 1.5vw);
+	font-size: 2vw;
+	transform: rotate(270deg);
 
 }
+
+#right-text {
+	position:absolute;
+	right: -3.5vw;
+	top: calc(50% - 1.5vw);
+	font-size: 2vw;
+	transform: rotate(90deg);
+}
+	
+
+#output-text {
+  overflow: visible;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  position:relative;
+  text-transform: uppercase;
+  color: #FFF;
+  text-align: center;
+
+}
+
+#output-text:before {
+	content: '';
+	height: calc(50% - 5vw);
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left:0px;
+	border-top: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+}
+
+#output-text:after {
+	content: '';
+	height: calc(50% - 5vw);
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	//border-bottom: 1px solid #FFF;
+	border-left: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+}
+
+.odometer-digit-spacer {
+  width: 0.7em;
+  display: inline-block;
+}
+
+
+

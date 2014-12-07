@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tribute Display Demo</title>
+    <title>Tribute Display</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/css/odometer-theme-default.css" rel="stylesheet" media="screen">
     <link href="assets/css/application.css" rel="stylesheet" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
 
+
+
     <div id="output-text">
-      <div class="stat">
-        <h2 id="served-count"></h2>
-        <p>People Served</p>
+      <span id="left-text">TRIBUTE</span>
+      <span id="right-text">TRIBUTE</span>
+
+      <div class ="stats">
+        <div class="stat">
+          <h2 id="served-count" class="odometer"></h2>
+          <p>People Served</p>
+        </div>
+
+        <div class="stat">
+          <h2 id="pumped-count" class="odometer"></h2>
+          <p>Liters Pumped</p>
+        </div>
       </div>
-<!--       <div class="stat">
-        <h2 id="raised-count"></h2>
-        <p>Raised</p>
-      </div> -->
-      <div class="stat">
-        <h2 id="pumped-count"></h2>
-        <p>Liters Pumped</p>
+
+      <div class ="final">
+          <h1>WE DID IT!</h1>
+          <div class="gradient-bar"></div>
+          <h4>Thank You For Helping Us Bring </h4>
+          <h4>Clean Water To Over <span id="max-people-served"></span> People</h4>
       </div>
+
+      <object id="svg" type="image/svg+xml" data="assets/css/JerryCan_White.svg"></object>
+      <div id="bottom-border"></div>
+
     </div>
 
-    <form id="input-form" class="form-inline">
-      <div class="form-group">
-        <input id="input-liters" type="text" class="form-control" placeholder="Enter liters" autofocus />
-      </div>
-      <button class="btn btn-primary" type="submit">Send</button>
-    </form>
+    <div class="gradient-container">
+      <div class="bg-gradient bg-gradient-1 show"></div>
+      <div class="bg-gradient bg-gradient-2"></div>
+      <div class="bg-gradient bg-gradient-3"></div>
+      <div class="bg-gradient bg-gradient-4"></div>
+    </div>
 
     <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/odometer.js"></script>
     <script type="text/javascript" src="assets/js/application.js"></script>
   </body>
 </html>
