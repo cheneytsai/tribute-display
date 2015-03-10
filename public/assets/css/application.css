@@ -8,7 +8,7 @@ body {
 	font-size: 2.5vw;
 	height: 100vh;
 	padding: 2.5vh 2vw;
-	letter-spacing: 0.3vw;
+	letter-spacing: 0px;
 	overflow: hidden;
 	
 }
@@ -52,36 +52,200 @@ h4 {
 	-webkit-text-stroke-width: 2px;
 }
 
-@-webkit-keyframes wave-animation{
+@-webkit-keyframes wave-animation-day1{
   from {
-  	background-position: 50px 35px;
+  	background-position: 50px 90px;
   }
   to {
-  	background-position: 250px 35px;
+  	background-position: 250px 90px;
   }
+}
+
+@-webkit-keyframes wave-animationb-day1{
+  from {
+  	background-position: 50px 50px;
+  }
+  to {
+  	background-position: 250px 50px;
+  }
+}
+
+@-webkit-keyframes wave-animation-day2{
+  from {
+  	background-position: 50px 78px;
+  }
+  to {
+  	background-position: 250px 78px;
+  }
+}
+
+@-webkit-keyframes wave-animationb-day2{
+  from {
+  	background-position: 50px 38px;
+  }
+  to {
+  	background-position: 250px 38px;
+  }
+}
+
+@-webkit-keyframes wave-animation-day3{
+  from {
+  	background-position: 50px 66px;
+  }
+  to {
+  	background-position: 250px 66px;
+  }
+}
+
+@-webkit-keyframes wave-animationb-day3{
+  from {
+  	background-position: 50px 26px;
+  }
+  to {
+  	background-position: 250px 26px;
+  }
+}
+
+@-webkit-keyframes wave-animation-day4{
+  from {
+  	background-position: 50px 54px;
+  }
+  to {
+  	background-position: 250px 54px;
+  }
+}
+
+@-webkit-keyframes wave-animationb-day4{
+  from {
+  	background-position: 50px 14px;
+  }
+  to {
+  	background-position: 250px 14px;
+  }
+}
+
+@-webkit-keyframes wave-animation-day5{
+  from {
+  	background-position: 50px 42px;
+  }
+  to {
+  	background-position: 250px 42px;
+  }
+}
+
+@-webkit-keyframes wave-animationb-day5{
+  from {
+  	background-position: 50px 2px;
+  }
+  to {
+  	background-position: 250px 2px;
+  }
+}
+
+@-webkit-keyframes wave-animation-day6{
+  from {
+  	background-position: 50px 30px;
+  }
+  to {
+  	background-position: 250px 30px;
+  }
+}
+
+@-webkit-keyframes wave-animationb-day6{
+  from {
+  	background-position: 50px -10px;
+  }
+  to {
+  	background-position: 250px -10px;
+  }
+}
+
+
+.odometer-value {
+	background-image:url('http://i.imgur.com/un42jMX.png');
+  -webkit-background-clip: text;
+
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+  background-size: 200px 150px;
+  background-repeat: repeat-x;	
 }
 
 .wave{
   background-image:url('http://i.imgur.com/un42jMX.png');
   -webkit-background-clip: text;
   
-  font-size: 4em;
+  font-size: 4.5em;
   color: rgba(0,0,0,0);
   -webkit-text-stroke-color: #525f66;
   
   text-shadow: 0px 0px rgba(255,255,255,0.5);
-  -webkit-animation: wave-animation 2s infinite linear;
 
-  background-size: 200px 300px;
-  background-position: 50px 35px;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+
+  background-size: 200px 150px;
   background-repeat: repeat-x;
   
+}
+
+.wave.day1 {
+	-webkit-animation-name: wave-animation-day1;
+}
+
+.wave.day1 .odometer-value {
+	-webkit-animation-name: wave-animationb-day1;
+}
+
+.wave.day2 {
+	-webkit-animation-name: wave-animation-day2;
+}
+
+.wave.day2 .odometer-value {
+	-webkit-animation-name: wave-animationb-day2;
+}
+
+.wave.day3 {
+	-webkit-animation-name: wave-animation-day3;
+}
+
+.wave.day3 .odometer-value {
+	-webkit-animation-name: wave-animationb-day3;
+}
+
+.wave.day4 {
+	-webkit-animation-name: wave-animation-day4;
+}
+
+.wave.day4 .odometer-value {
+	-webkit-animation-name: wave-animationb-day4;
+}
+
+.wave.day5 {
+	-webkit-animation-name: wave-animation-day5;
+}
+
+.wave.day5 .odometer-value {
+	-webkit-animation-name: wave-animationb-day5;
+}
+
+.wave.day6 {
+	-webkit-animation-name: wave-animation-day6;
+}
+
+.wave.day6 .odometer-value {
+	-webkit-animation-name: wave-animationb-day6;
 }
 
 .no-wave {
   font-size: 2em;
   color:#8fa7b3;
   -webkit-text-stroke-color: #8fa7b3;
+  padding:0px;
 }
 
 .no-wave-2 {
@@ -92,11 +256,16 @@ h4 {
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
   	font-family: 'Cabin Condensed', sans-serif;
+  	vertical-align: text-top;
 }
 
 .odometer-value {
     width: 100%
  }	
+
+ .odometer.odometer-auto-theme .odometer-digit .odometer-digit-spacer, .odometer.odometer-theme-default .odometer-digit .odometer-digit-spacer {
+ 	margin: -5px;
+ }
 
 
 #svg {

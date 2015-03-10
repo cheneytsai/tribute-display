@@ -21,6 +21,40 @@ $(document).ready(function() {
     duration: 5000,
   });
 
+  $(document).keypress(function(e) {
+    var charCode = e.charCode;
+    var $wave = $('.wave');
+
+    switch(charCode) {
+      case 49:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day1");
+        break;
+      case 50:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day2");
+        break;
+      case 51:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day3");
+        break;
+      case 52:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day4");
+        break;
+      case 53:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day5");
+        break;
+      case 54:
+        $wave.removeClass("day1 day2 day3 day4 day5 day6");
+        $wave.addClass("day6");
+        break;
+      default:
+        break;
+    }
+  });
+
 });
 
 

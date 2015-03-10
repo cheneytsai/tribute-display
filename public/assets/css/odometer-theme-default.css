@@ -90,7 +90,7 @@
 }
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  font-family: "NeueDroschke", sans-serif;
+  font-family: "Cabin Condensed", sans-serif;
   line-height: 1.1em;
 }
 .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value {
