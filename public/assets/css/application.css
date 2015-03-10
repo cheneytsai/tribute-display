@@ -1,15 +1,10 @@
-@font-face {
-  font-family: 'NeueDroschke';
-  src: url('../fonts/NeueDroschke.ttf');
-}
-
 * {
 	box-sizing: border-box;
 }
 
 body {
-	font-family: 'NeueDroschke';
-	background-color: #FFF;
+	font-family: 'Cabin Condensed', sans-serif;
+	background-color: #e6eef2;
 	font-size: 2.5vw;
 	height: 100vh;
 	padding: 2.5vh 2vw;
@@ -18,72 +13,8 @@ body {
 	
 }
 
-.gradient-container {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top:0px;
-	left: 0px;
-	z-index: 1;
-	-webkit-transform: translateZ(0);
-}
-
-.bg-gradient {
-	opacity: 0;
-	transition: opacity 4s ease-in-out;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top:0px;
-	left: 0px;
-	-webkit-animation: pan 10s ease infinite;
-	z-index: 1;
-	-webkit-transform: translateZ(0);
-}
-
-@-webkit-keyframes pan {
-    0%{background-position:0% 50%}
-    50%{background-position:50% 0%}
-    100%{background-position:0% 50%}
-}
-
-
-.bg-gradient-1 {
-	background: -webkit-linear-gradient(#2D3463, #EA0B8C);
-	background-size: 150% 150%;
-}
-
-.bg-gradient-2 {
-	background: -webkit-linear-gradient(#EE3968, #F9AE1D);
-	background-size: 150% 150%;
-}
-
-.bg-gradient-3 {
-	background: -webkit-linear-gradient(#F5EB29, #68C39C);
-	background-size: 150% 150%;
-}
-
-.bg-gradient-4 {
-	background: -webkit-linear-gradient(#68C39C, #3AC6F4);
-	background-size: 150% 150%;
-}
-
-.gradient-bar {
-	background: -webkit-linear-gradient(right, #EB1D6B, #F9AE1D);
-	margin: 0 auto;
-	margin-bottom: 8vh;
-	height: 1vh;
-	width: 70vw;
-}
-
-.show {
-	transition: opacity 2s ease-in-out;
-	opacity: 1;
-}
-
-
 h1, h2, h3, h4, h5, h6, p, span {
-	font-family: 'NeueDroschke';
+	font-family: 'Cabin Condensed', sans-serif;
 }
 
 h1 {
@@ -102,15 +33,6 @@ h4 {
 	margin: 0 auto;
 }
 
-.final {
-	display: none;
-	position: relative;
-  top: 50%;
-  	-webkit-transform: translateY(-50%);
-  	-ms-transform: translateY(-50%);
-  	transform: translateY(-50%);
-}
-
 
 .stats {
   position: relative;
@@ -122,11 +44,54 @@ h4 {
 
 .stat {
 	padding: 25px 0px;
+	text-transform: uppercase;
+
+	display: block;
+	opacity: 1;
+	vertical-align: bottom;
+	-webkit-text-stroke-width: 2px;
+}
+
+@-webkit-keyframes wave-animation{
+  from {
+  	background-position: 50px 35px;
+  }
+  to {
+  	background-position: 250px 35px;
+  }
+}
+
+.wave{
+  background-image:url('http://i.imgur.com/un42jMX.png');
+  -webkit-background-clip: text;
+  
+  font-size: 4em;
+  color: rgba(0,0,0,0);
+  -webkit-text-stroke-color: #525f66;
+  
+  text-shadow: 0px 0px rgba(255,255,255,0.5);
+  -webkit-animation: wave-animation 2s infinite linear;
+
+  background-size: 200px 300px;
+  background-position: 50px 35px;
+  background-repeat: repeat-x;
+  
+}
+
+.no-wave {
+  font-size: 2em;
+  color:#8fa7b3;
+  -webkit-text-stroke-color: #8fa7b3;
+}
+
+.no-wave-2 {
+  font-size: 3.5em;
+  color: #ffca0b;
+  -webkit-text-stroke-color: #ffca0b;
 }
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  	-webkit-transform: translateZ(0)
-  	font-family: 'NeueDroschke';
+  	font-family: 'Cabin Condensed', sans-serif;
 }
 
 .odometer-value {
@@ -149,7 +114,7 @@ h4 {
 	position: absolute;
 	bottom: 0px;
 	left:0px;
-	border-bottom: 1px solid #FFF;
+	border-bottom: 1px solid #525f66;
 }
 
 #bottom-border:after {
@@ -159,7 +124,7 @@ h4 {
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
-	border-bottom: 1px solid #FFF;
+	border-bottom: 1px solid #525f66;
 }
 
 #left-text {
@@ -186,9 +151,13 @@ h4 {
   width: 100%;
   z-index: 999;
   position:relative;
+  
   text-transform: uppercase;
-  color: #FFF;
+  font-family: 'Cabin Condensed', sans-serif;
+  font-weight: bold;
   text-align: center;
+
+  color: #525f66;
 
 }
 
@@ -199,9 +168,9 @@ h4 {
 	position: absolute;
 	top: 0px;
 	left:0px;
-	border-top: 1px solid #FFF;
-	border-left: 1px solid #FFF;
-	border-right: 1px solid #FFF;
+	border-top: 4px solid #525f66;
+	border-left: 4px solid #525f66;
+	border-right: 4px solid #525f66;
 }
 
 #output-text:after {
@@ -211,9 +180,9 @@ h4 {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
-	//border-bottom: 1px solid #FFF;
-	border-left: 1px solid #FFF;
-	border-right: 1px solid #FFF;
+	border-bottom: 4px solid #525f66;
+	border-left: 4px solid #525f66;
+	border-right: 4px solid #525f66;
 }
 
 .odometer-digit-spacer {

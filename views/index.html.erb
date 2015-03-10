@@ -6,44 +6,37 @@
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet" media="screen">
     <link href="assets/css/application.css" rel="stylesheet" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
 
 
     <div id="output-text">
-      <span id="left-text">TRIBUTE</span>
-      <span id="right-text">TRIBUTE</span>
+      <span id="left-text">S X S W</span>
+      <span id="right-text">2 0 1 5</span>
+
+
 
       <div class ="stats">
-        <div class="stat">
-          <h2 id="served-count" class="odometer"></h2>
-          <p>People Served</p>
+
+        <div class="stat wave">
+          <span id="pumped-count" class="odometer"></span>
+          <span>Liters</span>
         </div>
 
-        <div class="stat">
-          <h2 id="pumped-count" class="odometer"></h2>
-          <p>Liters Pumped</p>
+        <div class="stat no-wave">
+          serves
         </div>
+
+        <div class="stat no-wave-2">
+          <span id="served-count" class="odometer"></span>
+          <span>People</span>
+        </div>
+
+
       </div>
 
-      <div class ="final">
-          <h1>WE DID IT!</h1>
-          <div class="gradient-bar"></div>
-          <h4>Thank You For Helping Us Bring </h4>
-          <h4>Clean Water To Over <span id="max-people-served"></span> People</h4>
-      </div>
-
-      <object id="svg" type="image/svg+xml" data="assets/css/JerryCan_White.svg"></object>
-      <div id="bottom-border"></div>
-
-    </div>
-
-    <div class="gradient-container">
-      <div class="bg-gradient bg-gradient-1 show"></div>
-      <div class="bg-gradient bg-gradient-2"></div>
-      <div class="bg-gradient bg-gradient-3"></div>
-      <div class="bg-gradient bg-gradient-4"></div>
     </div>
 
     <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>

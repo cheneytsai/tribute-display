@@ -4,14 +4,10 @@ var scheme   = "<%= @scheme %>";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
 
-var bg_counter = 1;
-
 var STARTING_LITERS_PUMPED = window.document.location.href.split('?pumped=')[1] || 0;
 
-var MAX_NUMBER_PEOPLE = 1400;
 var PEOPLE_SERVED_BY_ONE_LITER = 20;
 
-var bgAnimateID = setInterval(animateBG, 12000);
 
 $(document).ready(function() {
 
@@ -24,10 +20,6 @@ $(document).ready(function() {
     el: document.querySelector('#pumped-count'),
     duration: 5000,
   });
-
-  
-
-  $('#max-people-served').html(numberWithCommas(MAX_NUMBER_PEOPLE));
 
 });
 
@@ -42,15 +34,7 @@ ws.onmessage = function(message) {
     var people_served = parseInt((data.ml_pumped/1000 + parseFloat(STARTING_LITERS_PUMPED)) * PEOPLE_SERVED_BY_ONE_LITER);
     var liters_pumped = (parseFloat(data.ml_pumped/1000) + parseFloat(STARTING_LITERS_PUMPED)).toFixed(1);
 
-    if (people_served >= MAX_NUMBER_PEOPLE ) {
-
-      od1.update(MAX_NUMBER_PEOPLE);
-      od2.update((MAX_NUMBER_PEOPLE/PEOPLE_SERVED_BY_ONE_LITER).toFixed(1));
-      animateFinalScreen();
-
-    } else {
-      window.requestAnimationFrame(updateCounter);
-    }
+    window.requestAnimationFrame(updateCounter);
 
     function updateCounter() {
       od1.update(people_served);
@@ -64,45 +48,6 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
-// Function to Transition Background
-function animateBG() {
-    if (bg_counter == 0) {
-        $('.bg-gradient').removeClass('show');
-        $('.bg-gradient-1').addClass('show');
-    }
-    else if (bg_counter == 1) {
-        $('.bg-gradient').removeClass('show');
-        $('.bg-gradient-2').addClass('show');
-    }
-    else if (bg_counter == 2) {
-        $('.bg-gradient').removeClass('show');
-        $('.bg-gradient-3').addClass('show');
-    }
-    else {
-
-    }
-    bg_counter++;
-    bg_counter = bg_counter%3;
-
-}
-
-function animateFinalScreen() {
-    clearInterval(bgAnimateID);
-    bg_counter = -1;
-
-    $('.bg-gradient').removeClass('show');
-    $('.bg-gradient-4').addClass('show');
-
-    setTimeout(function(){
-
-      $('.stats').fadeOut(500, function() {
-        $('.final').fadeIn(500);
-      });
-    }, 3000);
-
-
-}
 
 
 
